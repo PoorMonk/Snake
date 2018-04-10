@@ -19,15 +19,17 @@ public class StartUIController : MonoBehaviour {
         m_bestText.text = "best:长度:" + PlayerPrefs.GetInt("bestl", 0) + ",得分:" +
             PlayerPrefs.GetInt("bests", 0);
 
-        if (PlayerPrefs.GetString("SnakeColor", "blue") == "blue")
+        if (PlayerPrefs.GetString("SnakeHead", "sh01") == "sh01")
         {
             m_blue.isOn = true;
-            PlayerPrefs.SetString("SnakeColor", "blue");
+            //PlayerPrefs.SetString("SnakeColor", "blue");
+            SelectedBlue();
         }
         else
         {
             m_yellow.isOn = true;
-            PlayerPrefs.SetString("SnakeColor", "yellow");
+            //PlayerPrefs.SetString("SnakeColor", "yellow");
+            SelectedYellow();
         }
 
         if (PlayerPrefs.GetInt("Border", 1) == 1)
@@ -44,12 +46,16 @@ public class StartUIController : MonoBehaviour {
 
     public void SelectedBlue()
     {
-        PlayerPrefs.SetString("SnakeColor", "blue");
+        PlayerPrefs.SetString("SnakeHead", "sh01");
+        PlayerPrefs.SetString("SnakeBody1", "sb0101");
+        PlayerPrefs.SetString("SnakeBody2", "sb0102");
     }
 
     public void SelectedYellow()
     {
-        PlayerPrefs.SetString("SnakeColor", "yellow");
+        PlayerPrefs.SetString("SnakeHead", "sh02");
+        PlayerPrefs.SetString("SnakeBody1", "sb0201");
+        PlayerPrefs.SetString("SnakeBody2", "sb0202");
     }
 
     public void SelectedBorder()
@@ -64,6 +70,7 @@ public class StartUIController : MonoBehaviour {
 
     public void StartButtonClicked()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("main");
+        Debug.Log("Start Game...");
     }
 }

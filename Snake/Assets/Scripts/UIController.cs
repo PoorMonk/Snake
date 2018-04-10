@@ -94,18 +94,14 @@ public class UIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (PlayerPrefs.GetString("SnakeColor", "blue") == "blue")
+        /*if (PlayerPrefs.GetString("SnakeHead", "sh01") == "sh01")
         {
             m_head.GetComponent<Image>().sprite = m_blueHead;
         }
         else
         {
             m_head.GetComponent<Image>().sprite = m_yellowHead;
-        }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        }*/
+        m_head.GetComponent<Image>().sprite = Resources.Load<Sprite>(PlayerPrefs.GetString("SnakeHead", "sh01"));
 	}
 }

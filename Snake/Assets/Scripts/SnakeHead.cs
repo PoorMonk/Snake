@@ -13,7 +13,7 @@ public class SnakeHead : MonoBehaviour {
     private int y;
 
     private List<Transform> m_list = new List<Transform>();
-    public Sprite[] m_bodySprites = new Sprite[4];
+    public Sprite[] m_bodySprites = new Sprite[2];
     public GameObject m_bodyPrefab;
     private Transform m_parent;
 
@@ -31,7 +31,7 @@ public class SnakeHead : MonoBehaviour {
         m_parent = GameObject.Find("Canvas").gameObject.transform;
         InvokeRepeating("Move", 0, speed);
 
-        m_isBlue = (PlayerPrefs.GetString("SnakeColor", "blue") == "blue") ? true : false;
+        m_isBlue = (PlayerPrefs.GetString("SnakeHead", "sh01") == "sh01") ? true : false;
         m_isBorder = (PlayerPrefs.GetInt("Border", 1) == 1) ? true : false; 
         
 	}
@@ -106,7 +106,17 @@ public class SnakeHead : MonoBehaviour {
         AudioSource.PlayClipAtPoint(m_eatClip, gameObject.transform.position);
         int iIndex = (m_list.Count % 2 == 0) ? 0 : 1;
         if (m_isBlue)
-            iIndex += 2;
+        {
+            m_bodySprites[0] = Resources.Load<Sprite>(PlayerPrefs.GetString("SnakeBody1", "sb0101"));
+            m_bodySprites[1] = Resources.Load<Sprite>(PlayerPrefs.GetString("SnakeBody2", "sb0102"));
+        }
+        else
+        {
+            m_bodySprites[0] = Resources.Load<Sprite>(PlayerPrefs.GetString("SnakeBody1", "sb0201"));
+            m_bodySprites[1] = Resources.Load<Sprite>(PlayerPrefs.GetString("SnakeBody2", "sb0202"));
+        }
+        //if (m_isBlue)
+        //    iIndex += 2;
         GameObject gBody = Instantiate(m_bodyPrefab);
         gBody.transform.localPosition = new Vector3(2000, 2000, 0);
         gBody.GetComponent<Image>().sprite = m_bodySprites[iIndex];

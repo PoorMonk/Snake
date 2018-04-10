@@ -33,12 +33,7 @@ public class GenerateFood : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        RandomGenerateFood(false);
-        //Instantiate(test, new Vector3(200, 200, 0), Quaternion.identity);
-		//for(int i = 0; i < 100; ++i)
-  //      {
-  //          RandomGenerateFood(false);           
-  //      }
+        RandomGenerateFood(false);        
 	}
 	
 	// Update is called once per frame
